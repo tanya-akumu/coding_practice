@@ -4,46 +4,29 @@ import time
 class RoadRoller:
 
     def __init__(self):
-        self.num_drives = 1
+        pass
 
-    def solution(self, X, Y, W) -> int:
-        """
-        :param X:
-        :type W: int
-        """
-        # sort X
-        # choose first index as starting point
-        # get x + W
-        # check if subsequent values of x are < x + W
-        # pop values from the list
-        # increment counter if value in x array is greater than x + W
-        # select new starting point
-        # repeat
+    def solution(self,X, Y, W):
+        '''
+        Solution for finding minimum number of drives required to patch
+        all potholes on a road from a random starting point (x,0). The
+        algorithm is as follows:
+        1. Sort the x cordinates array in ascending order.
+        2. Pick lowest x value as start point. This is to ensure all
+        potholes will be patched.
+        3. Get the width frame that the road roller can patch in a single drive
+        4. Iterate through x coordinates:
+            - if the value of x is within the width frame, continue
+            - else
+                - increment number of drives
+                - set x as new start point
+                - compute the new widthframe
 
-        if X:
-            sorted_X = sorted(X)
-            # arr_len = len(sorted_X)
-            # num_drives = 1
-
-            while len(sorted_X) != 0:
-                start = sorted_X[0]
-                width = start + W
-
-                for i in range(len(sorted_X)):
-                    x = sorted_X[0]
-                    if x >= start and x <= width:
-                        sorted_X.pop(0)
-                    else:
-                        self.num_drives += 1
-                        # start = sorted_X[0]
-                        # width = start + W
-                        break
-        else:
-            self.num_drives = 0
-
-        return self.num_drives
-
-    def solution2(self,X, Y, W):
+        :param X: (array ints) x coordinates of potholes
+        :param Y: (array ints) y coordinates of potholes
+        :param W: (int) width of the roadroller
+        :return: drives (int) number of drives needed to patch potholes
+        '''
         sorted_X = sorted(X)
         start = sorted_X[0]
         width = start + W
@@ -61,6 +44,7 @@ class RoadRoller:
 
 
 if __name__ == '__main__':
+
     x = [randint(0, 1000000000) for i in range(100000)]
     y = [randint(0, 1000000000) for i in range(100000)]
     w = randint(1, 1000000000)
@@ -68,11 +52,6 @@ if __name__ == '__main__':
     t1 = time.perf_counter()
     drives = r.solution(x, y, w)
     t2 = time.perf_counter()
-    print(f"First solution executed in: {t2-t1:0.4f} seconds")
-    t3 = time.perf_counter()
-    drives = r.solution2(x, y, w)
-    t4 = time.perf_counter()
-    print(f"second solution executed in: {t4-t3:0.4f} seconds")
-
+    print(f"Solution executed in: {t2-t1:0.4f} seconds")
     print("Number of drives: ", drives)
 

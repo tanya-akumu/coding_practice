@@ -19,25 +19,16 @@ class Test(TestCase):
         y_3 = [0, 3, 2, 4]
         w_3 = 1
 
-        drives_1 = R.solution2(x_1, y_1, w_1)
+        drives_1 = R.solution(x_1, y_1, w_1)
         self.assertEqual(drives_1, 3)
         R.num_drives = 1
 
-        drives_2 = R.solution2(x_2, y_2, w_2)
+        drives_2 = R.solution(x_2, y_2, w_2)
         self.assertEqual(drives_2, 2)
         R.num_drives = 1
 
-        drives_3 = R.solution2(x_3, y_3, w_3)
+        drives_3 = R.solution(x_3, y_3, w_3)
         self.assertEqual(drives_3, 3)
-
-    def test_solution_empty(self):
-        R = RoadRoller()
-        x = []
-        y = []
-        w = 4
-
-        drives = R.solution(x, y, w)
-        self.assertEqual(drives, 0)
 
     def test_solution_one(self):
         R = RoadRoller()
@@ -46,5 +37,5 @@ class Test(TestCase):
         y = [0]
         w = 2
 
-        drives_3 = R.solution2(x, y, w)
+        drives_3 = R.solution(x, y, w)
         self.assertEqual(drives_3, 1)
